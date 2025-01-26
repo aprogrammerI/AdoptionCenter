@@ -11,9 +11,10 @@ namespace Domain.Domain_Models
         public string? Name { get; set; }
         public string? Breed { get; set; }
         public int? Age { get; set; }
+        public string? Sex { get; set; }
         public string? Description  { get; set; }
         public bool? IsVacinated { get; set; }
         
-
+        public string? imageUrl { get; set; }
     }
 }

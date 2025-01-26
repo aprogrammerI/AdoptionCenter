@@ -79,7 +79,7 @@ $.validator.addMethod( "abaRoutingNumber", function( value ) {
 $.validator.addMethod( "accept", function( value, element, param ) {
 
 	// Split mime on commas in case we have multiple types we can accept
-	var typeParam = typeof param === "string" ? param.replace( /\s/g, "" ) : "image/*",
+	var typeParam = typeof param === "string" ? param.replace( /\s/g, "" ) : "imageUrl/*",
 		optionalValue = this.optional( element ),
 		i, file, regex;
 

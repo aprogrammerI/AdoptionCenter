@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.Implemetation;
 using Repository.Interface;
+using Service.Implementation;
+using Service.Interface;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,8 @@ builder.Services.AddDefaultIdentity<AdoptionCenterUser>(options => options.SignI
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddTransient(typeof(IPetService), typeof(PetService));
 
 var app = builder.Build();
 
