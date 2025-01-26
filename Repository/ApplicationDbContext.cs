@@ -13,5 +13,8 @@ namespace Repository
         {
         }
       
+        public virtual DbSet<Pet> Pets { get; set; }
+        public virtual DbSet<Cat> Cats { get; set; }
+        public virtual DbSet<Dog> Dogs { get; set; }
     }
 }
