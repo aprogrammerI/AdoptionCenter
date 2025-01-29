@@ -8,6 +8,8 @@ namespace Domain.Domain_Models
 {
     public class Pet:BaseEntity
     {
+
+        public Guid PetId { get; set; }
         public string? Name { get; set; }
         public string? Breed { get; set; }
         public int? Age { get; set; }

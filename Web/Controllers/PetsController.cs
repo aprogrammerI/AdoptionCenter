@@ -54,15 +54,59 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Name,Breed,Age,Sex,Description,IsVacinated,imageUrl,Id")] Pet pet)
+        public IActionResult Create(string petType)
+        {
+            //[Bind("Name,Breed,Age,Sex,Description,IsVacinated,imageUrl,Id")] Pet pet
+            //if (ModelState.IsValid)
+            //{
+
+            //  pet.Id = Guid.NewGuid();
+            // petService.CreateNewPet(pet);
+            // return RedirectToAction(nameof(Index));
+            //}
+            // return View(pet);
+
+            if (petType.ToLower() == "cat")
+                return RedirectToAction("CreateCat"); 
+            else if (petType.ToLower() == "dog")
+                return RedirectToAction("CreateDog"); 
+
+            return RedirectToAction("Index"); 
+        }
+
+        public IActionResult CreateCat()
+        {
+            return View(new Cat()); 
+        }
+
+        [HttpPost]
+        public IActionResult CreateCat(Cat cat)
         {
             if (ModelState.IsValid)
             {
-                pet.Id = Guid.NewGuid();
-                petService.CreateNewPet(pet);
-                return RedirectToAction(nameof(Index));
+                petService.CreateNewPet(cat); 
+                return RedirectToAction("Index");
             }
-            return View(pet);
+
+            return View(cat);
+        }
+
+        public IActionResult CreateDog()
+        {
+            return View(new Dog()); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateDog(Dog dog)
+        {
+            if (ModelState.IsValid)
+            {
+                petService.CreateNewPet(dog); 
+                return RedirectToAction("Index");
+            }
+
+            return View(dog);
         }
 
         // GET: Pets/Edit/5
