@@ -8,5 +8,7 @@ namespace Domain.Domain_Models
 {
     public class Dog : Pet
     {
+        public string? Size { get; set; } 
+        public bool IsTrained { get; set; }
     }
 }
