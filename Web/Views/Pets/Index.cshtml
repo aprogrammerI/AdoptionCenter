@@ -4,68 +4,95 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Breed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sex)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsVacinated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imageUrl)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Breed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sex)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsVacinated)
-            </td>
-            <td>
-                    <img src="@Html.DisplayFor(modelItem => item.imageUrl)" width="120" height="80" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div style="background: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+            no-repeat center center;
+            background-size: cover;
+            height: 50vh;
+            background-color: rgba(0,0,0,0.5);
+            background-blend-mode: darken;
+            width: 100%;"
+         class="text-white">
+        <div class="container" style="padding-top: 18vh">
+            <h1 class="fw-bolder">Let Your Pet Find Their New Family</h1>
+            <p class="lead text-light">Post your pet for adoption and help them find a loving home.</p>
+            <a asp-action="Create" class="btn btn-dark rounded-1 btn-lg text-uppercase shadow-sm">Add for Adoption</a>
+        </div>
+    </div>
+    
+    
+    <div class="table-responsive mt-2 mb-5">
+    <table class="table table-striped table table-bordered align-middle">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Breed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsVacinated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td class="fw-semibold">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Breed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td class="text-truncate" style="max-width: 200px">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @if(item.IsVacinated == true)
+                            {
+                                <span class="badge bg-secondary">Vaccinated</span>
+                            }
+                        else
+                            {
+                                <span class="badge bg-secondary">Not Vacionated</span>
+                            }
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.imageUrl)" alt="Pet Image" 
+                             class="img-thumbnail rounded-1" style="width: 120px; height:80px; object-fit: cover;"/>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light">Edit</a> 
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-light">Details</a> 
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-light">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>

@@ -4,27 +4,33 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div style="background: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+            no-repeat center center;
+            background-size: cover;
+            height: 80vh;
+            background-color: rgba(0,0,0,0.5);
+            background-blend-mode: darken;
+            width: 100%;"
+     class="d-flex justify-content-center align-items-center text-white">
+    <div class="col-md-6 text-center p-5">
+        <div class="d-flex flex-column justify-content-center h-100">
+            <p class="mb-4" style="font-size: 2rem; font-weight: bold;">Add your pet here!</p>
+            <form asp-action="Create" method="post">
+                <div class="mb-4">
+                    <label for="petType" class="form-label text-white">Select your pet type</label>
+                    <select id="petType" name="petType" class="form-control">
+                        <option value="cat">Cat</option>
+                        <option value="dog">Dog</option>
+                    </select>
+                </div>
 
-<h4>Pet</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div class="form-group">
-                <label for="petType">Select Pet Type</label>
-                <select id="petType" name="petType" class="form-control">
-                    <option value="cat">Cat</option>
-                    <option value="dog">Dog</option>
-                </select>
+                <div class="form-group mb-4">
+                    <input type="submit" value="Create Pet" class="btn btn-secondary w-100" />
+                </div>
+            </form>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-secondary rounded-1" asp-action="Index">Back to List</button>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create Pet" class="btn btn-primary" />
-            </div>
-        </form>
+       </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

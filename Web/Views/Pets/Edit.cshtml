@@ -4,60 +4,76 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="container-fluid">
+    <div class="row min-vh-100">
 
-<h4>Pet</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div style="width: 80%;">
+                <h4>Edit Pet Information</h4>
+                <hr />
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Breed" class="control-label"></label>
+                        <input asp-for="Breed" class="form-control" />
+                        <span asp-validation-for="Breed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age" class="control-label"></label>
+                        <input asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Sex" class="control-label"></label>
+                        <input asp-for="Sex" class="form-control" />
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsVacinated" class="control-label"></label>
+                        <input asp-for="IsVacinated" class="form-control" />
+                        <span asp-validation-for="IsVacinated" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="imageUrl" class="control-label"></label>
+                        <input asp-for="imageUrl" class="form-control" />
+                        <span asp-validation-for="imageUrl" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Save" class="btn btn-primary w-100" />
+                    </div>
+                </form>
+
+                <div class="mt-3">
+                    <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Breed" class="control-label"></label>
-                <input asp-for="Breed" class="form-control" />
-                <span asp-validation-for="Breed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sex" class="control-label"></label>
-                <input asp-for="Sex" class="form-control" />
-                <span asp-validation-for="Sex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsVacinated" class="control-label"></label>
-                <input asp-for="IsVacinated" class="form-control" />
-                <span asp-validation-for="IsVacinated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="imageUrl" class="control-label"></label>
-                <input asp-for="imageUrl" class="form-control" />
-                <span asp-validation-for="imageUrl" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+        <div class="col-md-6 image-container"></div>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<style>
+    .image-container {
+        background-image: url('https://images.unsplash.com/photo-1583795128727-6ec3642408f8?q=80&w=1957&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+    }
+</style>    
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

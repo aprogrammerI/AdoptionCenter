@@ -2,7 +2,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="background: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+            no-repeat center center; 
+            background-size: cover; 
+            height: 70vh;
+            background-color: rgba(0,0,0,0.5);
+            background-blend-mode: darken;
+            width: 100%;"  
+     class="text-white">
+    <div class="container" style="padding-top: 10vh">
+        <h1 class="fw-bolder">Adopt-a-Paw</h1>
+        <p class="lead fw-normal">Your new furry friend is waiting for you</p>
+        <p class="fw-lighter">Browse our pets and find the perfect companion!</p>
+        <a href="@Url.Action("Index","Pets")" class="btn btn-light rounded-1 ">Browse Pets</a>
+    </div>
+</div>
+
+<div class="text-center my-5">
+    <h2 class="text-uppercase mb-3">why adopt?</h2>
+    <hr class="hr border-1 m-auto" style="width:6%">
+    <p class="text-secondary mt-2">Adopting a pet means giving them a second chance at life.</p>
+    <p class="text-secondary">It's a rewarding experience that benefits both you and your new friend.</p>
+
+</div>
+
+<div>
+    <div class="row my-3 justify-content-center">
+        <div class="col-md-4 my-3 w-25">
+            <img src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="img-fluid" />
+        </div>
+
+        <div class="col-md-4 my-3 w-25">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="img-fluid" />
+        </div>
+
+        <div class="col-md-4 my-3 w-25">
+            <img src="https://images.unsplash.com/photo-1568043210943-0e8aac4b9734?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="img-fluid" />
+        </div>
+    </div>
+</div>
+
+<div class="row my-5" >
+    <div class="col-md-3 m-auto pb-5" style="padding-left: 60px">
+        <img src="https://images.unsplash.com/photo-1538128835124-7805d3fd3f43?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /
+        class="img-fluid" style="background-size: cover">
+    </div>
+    <div class="col-md-3 m-auto pb-5" style="padding-left: 60px">
+        <img src="https://images.unsplash.com/photo-1597633425046-08f5110420b5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" /
+             class="img-fluid" style="background-size: cover">
+    </div>
+
+    <div class="col-md-6 pt-3">
+        <h2 class="mb-4">Join the Adoption Movement</h2>
+        <hr class="hr border-2" style="width: 10%"/>
+        <p class="mw-3 text-secondary">Have a pet that needs a home?</p>
+        <p class="mw-3 text-secondary">Start the process</p>
+        <button class="btn btn rounded-1 text-uppercase fw-bold p-6">Here</button>
+    </div>
 </div>
