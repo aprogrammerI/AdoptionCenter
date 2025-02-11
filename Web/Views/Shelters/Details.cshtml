@@ -1,0 +1,83 @@
+﻿@model Domain.Domain_Models.DTO.ShelterDetailsDTO
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Shelter</h4>
+    <hr />
+    <dl class="row">
+       
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Shelter.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Shelter.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Shelter.City)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Shelter.City)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Shelter.Capacity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Shelter.Capacity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Shelter.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <label>Pets</label>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Breed
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Pets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    
+                    <img src="@item.imageUrl" alt="@item.Name" style="max-width:100px;" />
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -14,7 +14,18 @@ namespace Repository
         }
       
         public virtual DbSet<Pet> Pets { get; set; }
-        public virtual DbSet<Cat> Cats { get; set; }
-        public virtual DbSet<Dog> Dogs { get; set; }
+        public virtual DbSet<Shelter> Shelters { get; set; }
+        public virtual DbSet<Adoption_Application> Adoption_Applications { get; set; }
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Pet>()
+                .HasOne(p => p.Shelter)
+                .WithMany(s => s.Pets)
+                .HasForeignKey(p => p.ShelterId)
+                .OnDelete(DeleteBehavior.Cascade); 
+        }*/
+
     }
 }

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Domain.Domain_Models.Adoption_Application>
+
+@{
+    ViewData["Title"] = "Adoption Applications";
+}
+<h2>Adoption Applications</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Pet Name</th>
+            <th>Pet Image</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var app in Model)
+        {
+            <tr>
+                <td>@app.FirstName</td>
+                <td>@app.LastName</td>
+                <td>@app.Pet?.Name</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(app.Pet?.imageUrl))
+                    {
+                        <img src="@app.Pet.imageUrl" alt="@app.Pet.Name" style="max-width: 120px; max-height: 80px; object-fit: cover;" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@app.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@app.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@app.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Adopt Now</a>
+</p>

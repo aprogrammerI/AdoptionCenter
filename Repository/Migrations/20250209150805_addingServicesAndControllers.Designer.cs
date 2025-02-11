@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,9 +12,11 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250209150805_addingServicesAndControllers")]
+    partial class addingServicesAndControllers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,11 +25,48 @@ namespace Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Domain_Models.Adopter", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Adopters");
+                });
+
             modelBuilder.Entity("Domain.Domain_Models.Adoption_Application", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ApplicationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -71,6 +111,11 @@ namespace Repository.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
                     b.Property<bool>("IsAdopted")
                         .HasColumnType("bit");
 
@@ -97,6 +142,10 @@ namespace Repository.Migrations
                     b.HasIndex("ShelterId");
 
                     b.ToTable("Pets");
+
+                    b.HasDiscriminator().HasValue("Pet");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Domain.Domain_Models.Shelter", b =>
@@ -327,6 +376,40 @@ namespace Repository.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Domain_Models.Cat", b =>
+                {
+                    b.HasBaseType("Domain.Domain_Models.Pet");
+
+                    b.Property<bool>("IsIndoor")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Cat");
+                });
+
+            modelBuilder.Entity("Domain.Domain_Models.Dog", b =>
+                {
+                    b.HasBaseType("Domain.Domain_Models.Pet");
+
+                    b.Property<bool>("IsTrained")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Dog");
+                });
+
+            modelBuilder.Entity("Domain.Domain_Models.Adopter", b =>
+                {
+                    b.HasOne("Domain.Domain_Models.Pet", "Pet")
+                        .WithMany()
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("Domain.Domain_Models.Adoption_Application", b =>
