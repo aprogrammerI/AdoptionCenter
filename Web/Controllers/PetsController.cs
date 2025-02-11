@@ -8,22 +8,27 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Domain_Models;
 using Repository;
 using Service.Interface;
+using Domain.Domain_Models.DTO;
+using Humanizer;
 
 namespace Web.Controllers
 {
     public class PetsController : Controller
     {
         private readonly IPetService petService;
+        private readonly IShelterService shelterService;
 
-        public PetsController(IPetService petService)
+        public PetsController(IPetService petService, IShelterService shelterService)
         {
             this.petService = petService;
+            this.shelterService = shelterService;
         }
 
         // GET: Pets
         public IActionResult Index()
         {
-            return View(petService.GetPets().ToList());
+            var pets = petService.GetPets().Where(p => !p.IsAdopted).ToList();
+            return View(pets);
         }
 
         // GET: Pets/Details/5
@@ -46,7 +51,12 @@ namespace Web.Controllers
         // GET: Pets/Create
         public IActionResult Create()
         {
-            return View();
+            var dto = new CreatePetDTO
+            {
+                Pet = new Pet(), // Create a base Pet
+                Shelters = shelterService.GetAvailableShelters()
+            };
+            return View(dto);
         }
 
         // POST: Pets/Create
@@ -54,60 +64,24 @@ namespace Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(string petType)
-        {
-            //[Bind("Name,Breed,Age,Sex,Description,IsVacinated,imageUrl,Id")] Pet pet
-            //if (ModelState.IsValid)
-            //{
-
-            //  pet.Id = Guid.NewGuid();
-            // petService.CreateNewPet(pet);
-            // return RedirectToAction(nameof(Index));
-            //}
-            // return View(pet);
-
-            if (petType.ToLower() == "cat")
-                return RedirectToAction("CreateCat"); 
-            else if (petType.ToLower() == "dog")
-                return RedirectToAction("CreateDog"); 
-
-            return RedirectToAction("Index"); 
-        }
-
-        public IActionResult CreateCat()
-        {
-            return View(new Cat()); 
-        }
-
-        [HttpPost]
-        public IActionResult CreateCat(Cat cat)
+        public IActionResult Create(CreatePetDTO dto)
         {
             if (ModelState.IsValid)
             {
-                petService.CreateNewPet(cat); 
-                return RedirectToAction("Index");
+                
+                dto.Pet.Shelter = shelterService.GetShelterById(dto.Pet.ShelterId);
+
+                
+                petService.CreateNewPet(dto.Pet);
+
+                return RedirectToAction("Index"); 
             }
 
-            return View(cat);
+            dto.Shelters = shelterService.GetAvailableShelters();
+            return View(dto);
         }
 
-        public IActionResult CreateDog()
-        {
-            return View(new Dog()); 
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CreateDog(Dog dog)
-        {
-            if (ModelState.IsValid)
-            {
-                petService.CreateNewPet(dog); 
-                return RedirectToAction("Index");
-            }
-
-            return View(dog);
-        }
+       
 
         // GET: Pets/Edit/5
         public IActionResult Edit(Guid? id)

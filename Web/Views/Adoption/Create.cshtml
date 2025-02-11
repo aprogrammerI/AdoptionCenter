@@ -1,0 +1,56 @@
+﻿@model Domain.Domain_Models.DTO.AdoptionDTO
+
+@{
+    ViewData["Title"] = "Create Adoption Application";
+}
+<h2> Adoption Application</h2>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.FirstName"></label>
+        <input asp-for="AdoptionApplication.FirstName" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.LastName"></label>
+        <input asp-for="AdoptionApplication.LastName" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.Phone"></label>
+        <input asp-for="AdoptionApplication.Phone" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.Email"></label>
+        <input asp-for="AdoptionApplication.Email" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.City"></label>
+        <input asp-for="AdoptionApplication.City" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.Country"></label>
+        <input asp-for="AdoptionApplication.Country" class="form-control" />
+        <span asp-validation-for="AdoptionApplication.Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdoptionApplication.PetId">Select a Pet</label>
+        <select asp-for="AdoptionApplication.PetId" class="form-control"
+                asp-items="@(new SelectList(Model.AvailablePets, "Id", "Name"))">
+        </select>
+        <span asp-validation-for="AdoptionApplication.PetId" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

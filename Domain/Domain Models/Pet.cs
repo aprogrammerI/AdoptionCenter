@@ -18,5 +18,11 @@ namespace Domain.Domain_Models
         public bool? IsVacinated { get; set; }
         
         public string? imageUrl { get; set; }
+
+        public Guid? ShelterId { get; set; }
+
+         public Shelter? Shelter { get; set; }
+
+        public bool IsAdopted { get; set; } = false;
     }
 }

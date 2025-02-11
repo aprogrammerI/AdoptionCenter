@@ -6,12 +6,12 @@
 
 <div class="container-fluid">
     <div class="row min-vh-100">
-
         <div class="col-md-6 d-flex align-items-center justify-content-center">
             <div style="width: 80%;">
                 <h4>Edit Pet Information</h4>
                 <hr />
-                <form asp-action="Edit">
+                <!-- Include asp-route-id to pass the pet's id to the POST action -->
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
@@ -49,6 +49,7 @@
                         <input asp-for="imageUrl" class="form-control" />
                         <span asp-validation-for="imageUrl" class="text-danger"></span>
                     </div>
+                    <!-- Hidden field for the Id (optional if route parameter is used) -->
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group mt-3">
                         <input type="submit" value="Save" class="btn btn-primary w-100" />
@@ -62,7 +63,6 @@
         </div>
 
         <div class="col-md-6 image-container"></div>
-
     </div>
 </div>
 
@@ -73,8 +73,10 @@
         background-position: center;
         min-height: 100vh;
     }
-</style>    
+</style>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

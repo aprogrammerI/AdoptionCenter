@@ -23,7 +23,13 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-builder.Services.AddTransient(typeof(IPetService), typeof(PetService));
+
+builder.Services.AddTransient<IPetService, PetService>();
+builder.Services.AddTransient<IAdoptionService, AdoptionService>();
+builder.Services.AddTransient<IShelterService, ShelterService>();
+//builder.Services.AddScoped<IAdopterService, AdopterService>();
+
+
 
 var app = builder.Build();
 
