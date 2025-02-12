@@ -4,71 +4,70 @@
     ViewData["Title"] = "Details";
 }
 
+<div style="background: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                        background-size:cover; width:100%; height: 100vh; background-color: rgba(0,0,0,0.1); background-blend-mode: darken;">
 
-<div class="container-fluid">
-    <div class="row min-vh-100">
+<div class="container text-center" style="padding-top: 10vh">
+    <h1 class="fw-normal">Meet @Model.Name, a pet looking for a loving home.</h1>
+</div>
 
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-            <div style="width: 80%;">
-                <h4>Pet Information</h4>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Breed)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Breed)
-                    </dd>
+<div class="container-fluid mt-4">
+    <div class="row">
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Age)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Age)
-                    </dd>
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Sex)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Sex)
-                    </dd>
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.IsVacinated)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.IsVacinated)
-                    </dd>
-
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.imageUrl)
-                    </dt>
-                    <dd class="col-sm-10">
-                        <img src="@Model.imageUrl" alt="Pet Photo" class="img-fluid" style="max-width: 100%; height: auto;" />
-                    </dd>
-                </dl>
-                <div class="mt-3">
-                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary w-100">Edit</a> |
-                    <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
-                </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center p-0">
+            <div class="card" style="width: 100%; max-width: 500px; margin-right: 10px">
+                <img src="@Model.imageUrl" alt="Pet Photo" class="card-img-top img-fluid" style="max-height: 400px; object-fit: cover;" />
             </div>
         </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center p-0">
+            <div class="card shadow-sm" style="width: 100%; max-width: 500px; margin-left: 10px">
+                <div class="card-body">
+                    <h4 class="card-title">Information</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">Name</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
 
-        <div class="col-md-6"></div>
+                        <dt class="col-sm-4">Breed</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Breed)</dd>
+
+                        <dt class="col-sm-4">Age</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Age)</dd>
+
+                        <dt class="col-sm-4">Sex</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Sex)</dd>
+
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+
+                        <dt class="col-sm-4">Vaccination Status</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.IsVacinated.HasValue)
+                            {
+                                <span class="badge bg-dark">Vaccinated</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-dark">Not Vaccinated</span>
+                            }
+                        </dd>
+                    </dl>
+                    
+                </div>
+
+            </div>
+        </div>
+       
     </div>
+    <div class="row mt-4">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="d-grid gap-2" style="width: 100%; max-width: 500px;">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-secondary w-100">Edit</a>
+                    <a asp-action="Index" class="btn btn-secondary w-100">Back to List</a>
+                </div>
+        </div>
+    </div>
+</div>
+
 </div>

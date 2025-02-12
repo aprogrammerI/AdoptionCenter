@@ -3,52 +3,75 @@
 @{
     ViewData["Title"] = "Create Adoption Application";
 }
-<h2> Adoption Application</h2>
-<form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="containercontainer-fluid mb-2">
+    <div class="row min-vh-100">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div style="width: 80%">
+                <h4>Fill out the information below to get your future pet</h4>
+                <hr />
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.FirstName"></label>
-        <input asp-for="AdoptionApplication.FirstName" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.FirstName" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.FirstName" class="control-label"></label>
+                        <input asp-for="AdoptionApplication.FirstName" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.LastName " class="control-label"></label>
+                        <input asp-for="AdoptionApplication.LastName" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.Phone" class="control-label"></label>
+                        <input asp-for="AdoptionApplication.Phone" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.Email" class="control-label"></label>
+                        <input asp-for="AdoptionApplication.Email" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.City " class="control-label"></label>
+                        <input asp-for="AdoptionApplication.City" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.Country" class="control-label"></label>
+                        <input asp-for="AdoptionApplication.Country" class="form-control" />
+                        <span asp-validation-for="AdoptionApplication.Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AdoptionApplication.PetId" class="control-label">Select a Pet</label>
+                        <select asp-for="AdoptionApplication.PetId" class="form-control"
+                                asp-items="@(new SelectList(Model.AvailablePets, "Id", "Name"))">
+                        </select>
+                        <span asp-validation-for="AdoptionApplication.PetId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <input type="submit" value="Create" class="btn btn-secondary w-100" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-md-6 image-container"></div>
     </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.LastName"></label>
-        <input asp-for="AdoptionApplication.LastName" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.LastName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.Phone"></label>
-        <input asp-for="AdoptionApplication.Phone" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.Phone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.Email"></label>
-        <input asp-for="AdoptionApplication.Email" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.City"></label>
-        <input asp-for="AdoptionApplication.City" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.City" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.Country"></label>
-        <input asp-for="AdoptionApplication.Country" class="form-control" />
-        <span asp-validation-for="AdoptionApplication.Country" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AdoptionApplication.PetId">Select a Pet</label>
-        <select asp-for="AdoptionApplication.PetId" class="form-control"
-                asp-items="@(new SelectList(Model.AvailablePets, "Id", "Name"))">
-        </select>
-        <span asp-validation-for="AdoptionApplication.PetId" class="text-danger"></span>
-    </div>
-   
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
+</div>
+
+<style>
+    .image-container {
+        background-image: url('https://images.unsplash.com/photo-1542715234-4bafcfc68bd9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        min-height: 100vh;
+        margin-bottom: auto;
+        background-color: rgba(0,0,0,0.3);
+        background-blend-mode: darken;
+    }
+</style>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

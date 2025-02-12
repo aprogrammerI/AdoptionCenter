@@ -9,8 +9,7 @@
         <div class="col-md-6 d-flex align-items-center justify-content-center">
             <div style="width: 80%;">
                 <h4>Edit Pet Information</h4>
-                <hr />
-                <!-- Include asp-route-id to pass the pet's id to the POST action -->
+                <hr />  
                 <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -49,10 +48,9 @@
                         <input asp-for="imageUrl" class="form-control" />
                         <span asp-validation-for="imageUrl" class="text-danger"></span>
                     </div>
-                    <!-- Hidden field for the Id (optional if route parameter is used) -->
                     <input type="hidden" asp-for="Id" />
                     <div class="form-group mt-3">
-                        <input type="submit" value="Save" class="btn btn-primary w-100" />
+                        <input type="submit" value="Save" class="btn btn-secondary w-100" />
                     </div>
                 </form>
 
@@ -68,7 +66,7 @@
 
 <style>
     .image-container {
-        background-image: url('https://images.unsplash.com/photo-1583795128727-6ec3642408f8?q=80&w=1957&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-image: url('https://images.unsplash.com/photo-1560743173-567a3b5658b1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         background-size: cover;
         background-position: center;
         min-height: 100vh;
